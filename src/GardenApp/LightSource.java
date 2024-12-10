@@ -1,11 +1,13 @@
 package GardenApp;
 
-public abstract class LightSources extends GardenObject implements Searchable {
+public abstract class LightSource extends GardenObject implements Searchable {
 
     private Color color;
     private int areaOfLightReach;
 
-    public LightSources(String ID, Color color, int areaOfLightReach) {
+    public LightSource() {}
+
+    public LightSource(String ID, Color color, int areaOfLightReach) {
         super(ID);
         this.color = color;
         this.areaOfLightReach = areaOfLightReach;
@@ -17,6 +19,10 @@ public abstract class LightSources extends GardenObject implements Searchable {
     
     public void setColor(Color color) { this.color = color; }
     public void searchByAreaOfLightReach(int areaOfLightReach) { this.areaOfLightReach = areaOfLightReach; }
+
+    public void displayInfo(){
+        System.out.println("Type: "+ this.getClass().toString() + "ID: " + getID() + " Color: " + getColor() + " Area of Light Reach: " + getAreaOfLightReach());
+    }
 
 
     // Depending on the range, name(color of the lightSurce) and chacteristic of the lightSource 

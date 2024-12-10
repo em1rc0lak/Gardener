@@ -1,9 +1,13 @@
 package GardenApp;
 
-public class SmallLamp extends LightSources {
+public class SmallLamp extends LightSource {
 
     public SmallLamp(String ID, Color color, int range) {
         super(ID, color, range);
+    }
+
+    public SmallLamp() {
+        
     }
     
     @Override

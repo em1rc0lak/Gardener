@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Garden {
     private ArrayList<List<GardenSquare>> gardenMap;
-
+    private List<GardenObject> gardenStorage;
 
     // You are expected to properly use List interface to keep the GardenSquares in the Garden.
     // Initially a Garden of size 6 x 8 (8 columns & 6 rows) should be created
@@ -21,6 +21,11 @@ public class Garden {
             temp.add(row_List);
         }
         this.gardenMap = temp;
+        this.gardenStorage = new ArrayList<GardenObject>();
+    }
+
+    public void setGardenStorge(List<GardenObject> gardenStorage) {
+        this.gardenStorage = gardenStorage;
     }
 
     public void initializeRandomGarden(GardenSquare goal) {

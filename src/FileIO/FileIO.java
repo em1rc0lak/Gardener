@@ -23,7 +23,7 @@ public class FileIO {
 
     public List<GardenObject> readGardenObjectsToArrayList()
     {   
-        String path = "C:\\Users\\Berkan Deniz Korkmaz\\Desktop\\bachelor\\2_second year\\first semester\\Ceng211\\Homeworks\\HW3\\HW3_SOL_V2\\storage_contents.csv";
+        String path = "src\\storage_contents.csv";
         BufferedReader reader = null;
         String line = "";
         int numberOfRows = countRows(path);

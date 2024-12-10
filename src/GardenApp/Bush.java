@@ -6,6 +6,9 @@ public class Bush extends GardenPlant{
         super(ID, name, range, pollen);
     }
 
+    public Bush() {
+    }
+
     @Override
     public void bloom() {
     // Complete the bloom method check parent class Plant for info

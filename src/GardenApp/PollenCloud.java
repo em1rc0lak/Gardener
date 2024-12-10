@@ -21,7 +21,7 @@ public class PollenCloud implements Occupant {
         this.colors = colors;
     }
 
-    public PollenCloud setRandomPollenCloud() {
+    public void  setRandomPollenCloud() {
         Random rnd = new Random();
         int num = rnd.nextInt(0,7);
         switch ( num ) {
@@ -83,11 +83,6 @@ public class PollenCloud implements Occupant {
             case 7:
                 break;
         }
-
-
-        
-
-        return new PollenCloud();
     }
 
     public void setTestCasePollenCloud() {

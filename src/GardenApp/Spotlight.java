@@ -1,9 +1,12 @@
 package GardenApp;
 
-public class Spotlight extends LightSources {
+public class Spotlight extends LightSource {
 
     public Spotlight(String ID, Color color, int range) {
         super(ID, color, range);
+    }
+
+    Spotlight() {
     }
     
     @Override
