@@ -1,4 +1,5 @@
-import GardenApp.GardenObject;
+package GardenApp;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,15 +7,21 @@ public class GardenerApp {
 
     private StorageShed storageShed;
     private ArrayList<GardenObject> selectedObjects;
+    private Garden garden;
+
+    GardenSquare goalSquare = new GardenSquare();
 
     public GardenerApp() {
         this.storageShed = new StorageShed();
         this.selectedObjects = new ArrayList<>();
+        this.garden = new Garden();
         // Assume the storage shed is preloaded with GardenObjects
     }
 
     public void run() {
         Scanner scanner = new Scanner(System.in);
+        goalSquare = goalSquare.generateRandomGoal();
+
 
         while (selectedObjects.size() < 7) {
             System.out.println("==> Please search for Garden Objects from the Storage Shed. You can take up to " +
@@ -39,7 +46,65 @@ public class GardenerApp {
         }
 
         System.out.println("==> The gardener carries selected objects to the Garden.");
+        System.out.println("***********************************************************");
         // Carry selected objects to the garden logic
+
+        placeObjectsInGarden(scanner);
+
+        gardenerWaits();
+
+    }
+
+    private void placeObjectsInGarden(Scanner scanner) {
+        System.out .println("Initial Garden Map: ");
+        
+        boolean isContinue = true;
+        while(isContinue){
+            garden.display(goalSquare);
+
+            System.out.println("--> Your chosen Garden Objects: ");
+            for (GardenObject obj : selectedObjects) {
+                obj.displayInfo();
+            }
+
+            System.out.println("Enter the id corresponding to the Garden Object you would like to place: ");
+            
+            String selectedID = scanner.nextLine();
+
+            System.out.println("Enter the location you would like to place the selected Garden Object: ");
+            
+            String selectedSquare = scanner.nextLine();
+
+            boolean isPlaced = false;
+            while(!isPlaced){
+                for(GardenObject obj : selectedObjects) {
+                    if(obj.getID().equals(selectedID)) {
+                        GardenSquare square = garden.getSquareByPosition(new Position(selectedSquare));
+                        if(square.getOccupant() == null) {
+                            square.setOccupant(obj);
+                            selectedObjects.remove(obj);
+                            garden.setSquare(square);
+                            isPlaced = true;
+                            break;
+                        } else {
+                            System.out.println("The square is already occupied. Please select another square.");
+                        }
+                    }
+                }
+            }
+
+            System.out.println("Would you like to place another object? ([1] Yes, [2] No): ");
+            int continuePlacement = scanner.nextInt();
+            if (continuePlacement != 1) {
+                isContinue = false;
+            }
+
+        }
+        
+    }
+
+    private void gardenerWaits() {
+        
     }
 
     private void handlePlantSelection(Scanner scanner) {
@@ -174,7 +239,7 @@ public class GardenerApp {
         String selectedId = scanner.nextLine();
 
         for (GardenObject obj : results) {
-            if (obj.getId().equalsIgnoreCase(selectedId)) {
+            if (obj.getID().equalsIgnoreCase(selectedId)) {
                 selectedObjects.add(obj);
                 System.out.println("Object added to your selection.");
                 return;

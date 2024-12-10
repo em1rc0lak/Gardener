@@ -24,6 +24,11 @@ public class Garden {
         this.gardenStorage = new ArrayList<GardenObject>();
     }
 
+    public void setSquare(GardenSquare square) {
+        this.gardenMap.get(square.getPosition().getRowByIndex()).set(square.getPosition().getColumnByIndex(), square);
+
+    }
+
     public void setGardenStorge(List<GardenObject> gardenStorage) {
         this.gardenStorage = gardenStorage;
     }
@@ -82,8 +87,8 @@ public class Garden {
         --------------------------------------------------------
 
     */
-    public void Initialdisplay(GardenSquare goal) {
-        System.out.println("Initial Garden Map:");
+    public void display(GardenSquare goal) {
+        
         System.err.println("       1      2      3      4      5      6     7       8   ");
         System.err.println("    --------------------------------------------------------");
         for (int row = 0; row < 6; row++) {

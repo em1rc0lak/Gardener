@@ -21,5 +21,8 @@ public class GardenObject implements Occupant{
     public String toString() {
         return "  " + ID + "  ";
     }
- 
+    
+    public void displayInfo(){
+        System.out.println("Type: "+ this.getClass().toString() + "ID: " + getID());
+    }
 }
